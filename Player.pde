@@ -23,7 +23,7 @@ public class Player extends Block{
     y = y + speed;
     speed = speed + gravity;
     
-    if(y > height){
+    if(y > height-h){
       speed = 0;
     }
     if((keyPressed && key == 's') || mousePressed)
