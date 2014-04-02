@@ -20,11 +20,6 @@ public class Block implements Collidable{
     if(this.x+this.w >= objX && this.x <= objX + objW && this.y + this.h >= objY && this.y <= objY + objH)
     {
       return true;
-  //    println("hit");
-  //    if(wait >= 30){
-  //      score++;
-  //      wait=0;
-  //    }
     }
     
     return false;

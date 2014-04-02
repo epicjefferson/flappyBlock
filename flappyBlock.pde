@@ -4,18 +4,19 @@ float y = 50;
 //float gravity = .2;
 
 Player p1;
+Frienemy f1;
 
-float enemyX = 500;
-float enemyY = random(500);
-float enemySpeed = -5;
+//float enemyX = 500;
+//float enemyY = random(500);
+//float enemySpeed = -5;
 
 float squareSize=0;
 int score = 0;
 float wait = 0;
 
-int enemyColorR=0;
-int enemyColorG=0;
-int enemyColorB=0;
+//int enemyColorR=0;
+//int enemyColorG=0;
+//int enemyColorB=0;
 
   
 //global variables for circular path
@@ -26,9 +27,9 @@ int deg=0,r=255,g=255,b=255;
 void setup(){
   size(500,500);
   squareSize = width*.05;
-  //frameRate(30);
   
   p1 = new Player(100.0,50.0,squareSize,squareSize);
+  f1 = new Frienemy(width, random(height), squareSize,squareSize);
 }
 
 void draw(){
@@ -39,6 +40,9 @@ void draw(){
   
   p1.display();
   p1.update();
+  
+  f1.display();
+  f1.update();
   
 //  //player  
 //  rectMode(CENTER);
@@ -59,20 +63,20 @@ void draw(){
 ////    speed = speed - .3;
 ////    flappybird's action is more like 
 //    speed = -3;
-  
-  //enemy
-  stroke(0);
-  fill(enemyColorR, enemyColorG, enemyColorB);
-  rect(enemyX,enemyY, squareSize,squareSize);
-  enemyX = enemyX + enemySpeed;
-  
-  if(enemyX < 0){
-    enemyX = 500;
-    enemyY = random(500);
-    enemyColorR = int(random(255));
-    enemyColorG = int(random(255));
-    enemyColorB = int(random(255));
-  }
+//  
+//  //enemy
+//  stroke(0);
+//  fill(enemyColorR, enemyColorG, enemyColorB);
+//  rect(enemyX,enemyY, squareSize,squareSize);
+//  enemyX = enemyX + enemySpeed;
+//  
+//  if(enemyX < 0){
+//    enemyX = 500;
+//    enemyY = random(500);
+//    enemyColorR = int(random(255));
+//    enemyColorG = int(random(255));
+//    enemyColorB = int(random(255));
+//  }
 //  if(x+(squareSize/2)>= enemyX-(squareSize/2) && x-(squareSize/2)<= enemyX+(squareSize/2) && y+(squareSize/2) >= enemyY-(squareSize/2) && y-(squareSize/2)<=enemyY+(squareSize/2)){
 //    println("hit");
 //    if(wait >= 30){
@@ -120,5 +124,14 @@ void draw(){
             // the same thing in terms of position, but prevents
             // deg from increasing up and up and up.
   }
+  
+  // Check collisions
+  if (p1.collidesWith(f1)){
+    if(wait >= 30){
+      score++;
+      wait = 0;
+      println("hit!");
+    }
+  } 
 
 }
